@@ -1,30 +1,30 @@
 {
 	"npmScope": "nx-demo",
 	"affected": {
-		"defaultBase": "master1"
+		"defaultBase": "master"
 	},
 	"implicitDependencies": {
-		"angular.json": "*",
 		"package.json": {
 			"dependencies": "*",
 			"devDependencies": "*"
 		},
-		"tsconfig.base.json": "*",
-		"tslint.json": "*",
-		"nx.json": "*"
+		".eslintrc.json": "*"
 	},
 	"tasksRunnerOptions": {
 		"default": {
 			"runner": "@nrwl/workspace/tasks-runners/default",
 			"options": {
-				"cacheableOperations": [
-					"build",
-					"lint",
-					"test",
-					"e2e"
-				]
+				"cacheableOperations": ["build", "lint", "test", "e2e"]
 			}
 		}
+	},
+	"targetDependencies": {
+		"build": [
+			{
+				"target": "build",
+				"projects": "dependencies"
+			}
+		]
 	},
 	"projects": {
 		"app": {
@@ -32,9 +32,7 @@
 		},
 		"app-e2e": {
 			"tags": [],
-			"implicitDependencies": [
-				"app"
-			]
+			"implicitDependencies": ["app"]
 		}
 	}
 }
